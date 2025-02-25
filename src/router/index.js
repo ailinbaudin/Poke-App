@@ -29,7 +29,7 @@ const router = createRouter({
                 {
                     path: '/Documentation',
                     name: 'documentation',
-                    component: () => import('@/views/utilities/documentation.vue')
+                    component: () => import('@/views/pages/documentation.vue')
                 }
             ]
         },

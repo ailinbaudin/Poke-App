@@ -38,7 +38,7 @@ const showOnlyFavorites = () => {
 
 const showDialog = (pokemon) => {
     console.log('Selected Pokemon:', pokemon);
-    selectedPokemon.value = { ...pokemon };  
+    selectedPokemon.value = { ...pokemon };
     visibleDialog.value = true;
 };
 
@@ -59,6 +59,13 @@ onMounted(() => {
             filterDisplay="menu" :globalFilterFields="['name']" :loading="pokeStore.loading" :scrollable="!paginated"
             style="max-height: 500px; overflow-y: auto">
 
+            <Column field="image" style="max-width: 30px;">
+                <template #body="{ data }">
+                    <div class="image-container">
+                        <img :src="data.image" alt="data.name" @click="showDialog(data)">
+                    </div>
+                </template>
+            </Column>
             <Column field="name">
                 <template #body="{ data }">
                     <span @click="showDialog(data)" style="cursor: pointer;">{{ data.name }}</span>
@@ -74,26 +81,22 @@ onMounted(() => {
             </Column>
         </DataTable>
         <div class="buttons">
-            <Button
-        :class="{
-          'allButtons': !showFavorites,
-          'p-button-danger p-button-outlined': showFavorites,
-          'p-button-disabled': showFavorites
-        }"
-        rounded @click="showAll">
-        <i class="pi pi-bars text-white-500 mr-2" />
-        All
-      </Button>
-      <Button
-        :class="{
-          'allButtons': showFavorites,
-          'p-button-danger p-button-outlined': !showFavorites,
-          'p-button-disabled': !showFavorites
-        }"
-        rounded @click="showOnlyFavorites">
-        <i class="pi pi-star-fill text-white-500 mr-2" />
-        Favorites
-      </Button>
+            <Button :class="{
+                'allButtons': !showFavorites,
+                'p-button-danger p-button-outlined': showFavorites,
+                'p-button-disabled': showFavorites
+            }" rounded @click="showAll">
+                <i class="pi pi-bars text-white-500 mr-2" />
+                All
+            </Button>
+            <Button :class="{
+                'allButtons': showFavorites,
+                'p-button-danger p-button-outlined': !showFavorites,
+                'p-button-disabled': !showFavorites
+            }" rounded @click="showOnlyFavorites">
+                <i class="pi pi-star-fill text-white-500 mr-2" />
+                Favorites
+            </Button>
         </div>
         <CardPokemons :visible="visibleDialog" :pokemon="selectedPokemon" @update:visible="visibleDialog = $event" />
 
@@ -102,7 +105,21 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.image-container {
+    width: 26px;
+    height: 26px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
 
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.4);
+    transform-origin: center center;
+}
 
 .buttons {
     display: flex;
