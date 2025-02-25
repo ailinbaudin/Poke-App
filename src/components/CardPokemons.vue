@@ -59,6 +59,7 @@ const copyToClipboard = (pokemon) => {
         <p><strong>Height:</strong> {{ pokemon.height }} m</p>
         <Divider />
         <p><strong>Types:</strong> {{ pokemon.types }}</p>
+        <Divider />
       </div>
 
       <div class="button-container">
@@ -156,7 +157,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px;
   gap: 10px;
 }
 

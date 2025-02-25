@@ -6,7 +6,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 import LoadingPokebola from './LoadingPokebola.vue';
-import CardPokemons from './CardPokemons.vue';
+import CardPokemons from '@/components/CardPokemons.vue';
 
 const pokeStore = usePokeStore();
 const showFavorites = ref(false);
@@ -28,7 +28,7 @@ const filteredPokemons = computed(() => {
 
 const showAll = () => {
     showFavorites.value = false;
-    paginated.value = false;
+    paginated.value = true;
 };
 
 const showOnlyFavorites = () => {
@@ -74,16 +74,26 @@ onMounted(() => {
             </Column>
         </DataTable>
         <div class="buttons">
-            <Button :class="showFavorites ? 'allButtons' : 'p-button-danger p-button-outlined'" rounded
-                @click="showAll">
-                <i class="pi pi-bars text-white-500 mr-2" />
-                All
-            </Button>
-            <Button :class="showFavorites ? 'p-button-danger p-button-outlined' : 'allButtons'" rounded
-                @click="showOnlyFavorites">
-                <i class="pi pi-star-fill text-white-500 mr-2" />
-                Favorites
-            </Button>
+            <Button
+        :class="{
+          'allButtons': !showFavorites,
+          'p-button-danger p-button-outlined': showFavorites,
+          'p-button-disabled': showFavorites
+        }"
+        rounded @click="showAll">
+        <i class="pi pi-bars text-white-500 mr-2" />
+        All
+      </Button>
+      <Button
+        :class="{
+          'allButtons': showFavorites,
+          'p-button-danger p-button-outlined': !showFavorites,
+          'p-button-disabled': !showFavorites
+        }"
+        rounded @click="showOnlyFavorites">
+        <i class="pi pi-star-fill text-white-500 mr-2" />
+        Favorites
+      </Button>
         </div>
         <CardPokemons :visible="visibleDialog" :pokemon="selectedPokemon" @update:visible="visibleDialog = $event" />
 
@@ -92,6 +102,8 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+
 .buttons {
     display: flex;
     justify-content: center;

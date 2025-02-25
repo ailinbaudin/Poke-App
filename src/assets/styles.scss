@@ -17,6 +17,21 @@ $gutter: 1rem;
 .layout-topbar .topbar-start .topbar-menubutton i {
     color: white !important;
 }
+/* Botones con estilos cuando entra el disabled ListPokemons*/
+.allButtons {
+    background-color: #F22539; 
+    border: 1px solid #F22539;     
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.p-button-disabled {
+    background-color: #BFBFBF !important;
+    border-color: #BFBFBF !important;
+    color: #ffffff !important;
+    cursor: not-allowed;
+}
 .card {
     padding: 1rem;
     max-width: 600px;
