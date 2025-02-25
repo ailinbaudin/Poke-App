@@ -1,0 +1,16 @@
+.layout-colorscheme-menu {
+    --logo-color: var(--primary-color);
+    --menu-bg: var(--surface-overlay);
+    --root-menuitem-text-color: var(--primary-color);
+    --menuitem-text-color: var(--text-color);
+    --menuitem-icon-color: var(--primary-color);
+    --surface-hover: #F22539;  
+    --popup-submenu-item-text-color: var(--text-color);
+    --popup-submenu-item-icon-color: var(--primary-color);
+    --popup-submenu-item-hover-bg-color: var(--primary-hover);
+}
+
+.p-button:enabled:hover {
+    background-color: #F22539 !important;  
+}
+

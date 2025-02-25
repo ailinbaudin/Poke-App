@@ -1,0 +1,64 @@
+
+$gutter: 1rem; 
+@import '@/assets/layout/layout.scss';
+@import 'primeflex/primeflex.scss';
+@import 'primeicons/primeicons.css';
+
+:root {
+    --primary-color: #F22539 !important; 
+    --primary-color-text: #ffffff !important; 
+    --primary-color-border: 1px solid #F22539 !important; 
+}
+.p-button {
+    background: var(--primary-color) !important;
+    color: var(--primary-color-text) !important;
+    border: var(--primary-color-border) !important;
+}
+.layout-topbar .topbar-start .topbar-menubutton i {
+    color: white !important;
+}
+.card {
+    padding: 1rem;
+    max-width: 600px;
+    margin: auto;
+
+  }
+  .p-inputtext:focus {
+    border-color: #BFBFBF !important; 
+    box-shadow: 0 0 2px 1px #BFBFBF !important; 
+  }
+
+.text-box{
+    color: #5E5E5E !important;
+}
+.text-title{
+    color: #353535 !important;
+}
+.pi-star,
+.pi-star-fill {
+  color: #ECA539; 
+}
+
+/* Estilos personalizados para el paginador */
+.p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: #F22539; 
+    border: 1px solid #F22539; 
+    color: white; 
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page:hover {
+    background-color: #D21E32; 
+    border-color: #D21E32;
+}
+
+.p-paginator .p-paginator-next, 
+.p-paginator .p-paginator-prev {
+    background-color: #F22539;
+    color: white;
+    border: none;
+}
+
+.p-paginator .p-paginator-next:hover, 
+.p-paginator .p-paginator-prev:hover {
+    background-color: #D21E32; 
+}
