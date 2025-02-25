@@ -10,7 +10,6 @@ Vite: Bundler para optimizar el desarrollo.
 Vue Router: Gestión de rutas.
 Características
 Paginación de Pokémon: Carga de Pokémon en bloques para evitar sobrecargar la vista.
-Diálogo Movible: Los usuarios pueden mover el diálogo de información de Pokémon.
 UI Reutilizable: Uso de componentes de PrimeVue para mejorar la interfaz y la estructura del código.
 Pasos para Iniciar
 Instalar dependencias:
