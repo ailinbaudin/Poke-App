@@ -22,7 +22,7 @@ Este proyecto es una Poke-App interactiva construida con Vue 3. Se utiliza Prime
 
 | Inicio                                          | Listado de Pokemons                             |
 |-------------------------------------------------|-------------------------------------------------|
-| ![](./src/assets/Screenshots/Screenshot-01.png)   | ![](./src/assets/Screenshots/Screenshot-02png)   |
+| ![](./src/assets/Screenshots/Screenshot-01.png)   | ![](./src/assets/Screenshots/Screenshot-02.png)   |
 
 &nbsp;
 
