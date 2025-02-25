@@ -2,7 +2,6 @@
 import AppConfig from '@/layout/AppConfig.vue';
 import { useRouter } from 'vue-router';
 import { usePrimeVue } from 'primevue/config';
-
 const $primevue = usePrimeVue();
 
 defineExpose({
@@ -21,7 +20,8 @@ const router = useRouter();
         </div>
         <div class="landing-wrapper flex flex-column justify-content-center align-items-center">
             <div class="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 z-2 mb-6 shadow-soft-3d">
-                <img :src="`/demo/images/pokemons/pikachuv2.png`" alt="Pikachu-hello"
+                <img 
+                :src="`/demo/images/pokemons/pikachuv2.png`" alt="Pikachu-hello"
                     class="w-auto h-auto max-w-full max-h-50" />
             </div>
             <div class="mt-4 md:mt-6 text-center ">
