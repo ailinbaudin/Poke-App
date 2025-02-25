@@ -2,7 +2,7 @@
     <div class="card docs documentation ">
         <h2 class="text-title">Comenzando</h2>
         <p>
-            Este proyecto está basado en **Vue 3**, **Vite** y utiliza **PrimeVue** para la interfaz de usuario. Se ha
+            Este proyecto está basado en <b>Vue 3</b> , <b>Vite</b> <b> PrimeVue</b> y utiliza para la interfaz de usuario. Se ha
             integrado un menú de navegación para mejorar la estructura y la experiencia de usuario.
         </p>
         <h4 class="text-title">Paso 1: Instalar Dependencias</h4>
@@ -26,10 +26,10 @@
         <p>Se siguieron los principios SOLID, DRY (Don’t Repeat Yourself) y KISS (Keep It Simple, Stupid) para mantener
             el código limpio y fácil de mantener.</p>
         <h4 class="text-title">Personalización</h4>
-        <p>Modifica los componentes y estilos en la carpeta <span class="text-primary font-medium">src/components</span>
+        <p>Modifica los componentes y estilos en la carpeta <span class="text-title font-medium">src/components</span>
             según las necesidades de tu proyecto.</p>
 
-        <h4>Configuración del Tema</h4>
+        <h4 class="text-title">Configuración del Tema</h4>
         <p>Personaliza el tema editando las variables SCSS en <span class="text-title font-medium">src/styles</span>.
         </p>
     </div>
