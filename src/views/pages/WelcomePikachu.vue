@@ -1,16 +1,11 @@
 <script setup>
 import AppConfig from '@/layout/AppConfig.vue';
-import { useRouter } from 'vue-router';
 import { usePrimeVue } from 'primevue/config';
 const $primevue = usePrimeVue();
 
 defineExpose({
     $primevue
 });
-function redirigir() {
-    router.push({ name: 'listPokemons' });
-}
-const router = useRouter();
 </script>
 
 <template>
@@ -30,8 +25,10 @@ const router = useRouter();
                     Pokémon world.
                 </span>
                 <div id="apps" class="my-6 md:my-8">
-                    <Button @click="redirigir" type="button" label="Get started" id="button" class="w-10rem mx-auto"
-                        severity="danger" rounded />
+                    <router-link to="list-pokemons">
+                        <Button rounded type="button" class="font-medium cursor-pointer" raised severity="danger">Go
+                            back home</Button>
+                    </router-link>
                 </div>
             </div>
         </div>
