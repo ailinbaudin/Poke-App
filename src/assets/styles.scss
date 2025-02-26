@@ -53,6 +53,11 @@ $gutter: 1rem;
 .pi-star-fill {
   color: #ECA539; 
 }
+/* Estilo para la estrella cuando el botón de favoritos está deshabilitado */
+.p-button-disabled .pi-star, 
+.p-button-disabled .pi-star-fill {
+    color: #E8E8E8 !important; 
+}
 
 /* Estilos personalizados para el paginador */
 .p-paginator .p-paginator-pages .p-paginator-page {

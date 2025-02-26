@@ -26,8 +26,7 @@ defineExpose({
                 </span>
                 <div id="apps" class="my-6 md:my-8">
                     <router-link to="list-pokemons">
-                        <Button rounded type="button" class="font-medium cursor-pointer" raised severity="danger">Go
-                            back home</Button>
+                        <Button rounded type="button" class="font-medium cursor-pointer" raised severity="danger">Go Get started</Button>
                     </router-link>
                 </div>
             </div>
