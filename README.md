@@ -12,9 +12,13 @@ Este proyecto es una Poke-App interactiva construida con Vue 3. Se utiliza Prime
 - **SCSS**: Estilos modulares y reutilizables.
 - **Vite**: Bundler para optimizar el desarrollo.
 - **Vue Router**: Gestión de rutas.
-- **Características:**
-    - Paginación de Pokémon: Carga de Pokémon en bloques para evitar sobrecargar la vista.
-    - UI Reutilizable: Uso de componentes de PrimeVue para mejorar la interfaz y la estructura del código.
+- **Vitest**: Framework para realizar pruebas unitarias, compatible con Vue 3.
+- **Vue Test Utils**: Librería para facilitar las pruebas de los componentes Vue.
+- **JSDom**: Simulación de un entorno de navegador para pruebas unitarias.
+
+### Características:
+- Paginación de Pokémon: Carga de Pokémon en bloques para evitar sobrecargar la vista.
+- UI Reutilizable: Uso de componentes de PrimeVue para mejorar la interfaz y la estructura del código.
 
 &nbsp;
 
@@ -22,7 +26,7 @@ Este proyecto es una Poke-App interactiva construida con Vue 3. Se utiliza Prime
 
 | Inicio                                          | Listado de Pokemons                             |
 |-------------------------------------------------|-------------------------------------------------|
-| ![](./src/assets/Screenshots/Screenshot-01.png)   | ![](./src/assets/Screenshots/Screenshot-02.png)   |
+| ![](./src/assets/Screenshots/Screenshot-01.png)  | ![](./src/assets/Screenshots/Screenshot-02.png)  |
 
 &nbsp;
 
@@ -32,5 +36,11 @@ v1.0 (2025.02.25) - Versión inicial.
 
 &nbsp;
 
-Este código fuente se ofrece bajo la licencia bajo GPL v3.0 (open source).
+Este código fuente se ofrece bajo la licencia GPL v3.0 (open source).  
 Por favor envíame tu feedback a: ailinbaudin@gmail.com
+
+&nbsp;
+
+### Conéctate conmigo
+
+Puedes encontrarme en [LinkedIn](https://www.linkedin.com/in/frontdeveloper-ailinbaudin/) para más información y proyectos.
