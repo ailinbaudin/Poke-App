@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { createPinia } from 'pinia'; // Importa Pinia
+import { createPinia } from 'pinia'; 
 import Button from 'primevue/button';
 import '@/assets/styles.scss';
-
 import PrimeVue from 'primevue/config';
 import DataView from 'primevue/dataview';
 import DataTable from 'primevue/datatable';
@@ -17,6 +16,8 @@ import DialogService from 'primevue/dialogservice';
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice'; 
 import InputText from 'primevue/inputtext';
+
+
 
 const pinia = createPinia();
 

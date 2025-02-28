@@ -62,7 +62,8 @@ onMounted(() => {
             <Column field="image" style="max-width: 30px;">
                 <template #body="{ data }">
                     <div class="image-container">
-                        <img :src="data.image" alt="data.name" @click="showDialog(data)">
+                        <img :src="data.image" alt="data.name" @click="showDialog(data)"
+                            v-tooltip.bottom="{ value: 'Learn more about this Pokémon' }" />
                     </div>
                 </template>
             </Column>
