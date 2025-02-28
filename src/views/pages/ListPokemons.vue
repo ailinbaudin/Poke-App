@@ -52,7 +52,8 @@ onMounted(() => {
     <div class="card">
         <div class="flex justify-content-center">
             <span class="p-input-icon-left topbar">
-                <InputText v-model="filters.global.value" placeholder="Search" class="full-width-input" />
+                <InputText v-model="filters.global.value" placeholder="Search" class="full-width-input" v-tooltip.top="'Find your pokemon'" type="text" />
+
             </span>
         </div>
         <DataTable :value="filteredPokemons" :paginator="paginated" :rows="10" dataKey="name" v-model:filters="filters"
