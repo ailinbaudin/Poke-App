@@ -28,9 +28,9 @@ const toggleFavorite = (pokemon) => {
 // Función para copiar los datos al portapapeles
 const copyToClipboard = (pokemon) => {
   try {
-    const pokemonData = JSON.stringify(toRaw(pokemon));
+    const formattedData = `Name: ${pokemon.name}, Weight: ${pokemon.weight} kg, Height: ${pokemon.height} m, Types: ${pokemon.types}.`;
 
-    navigator.clipboard.writeText(pokemonData).then(() => {
+    navigator.clipboard.writeText(formattedData).then(() => {
       toast.add({ severity: 'secondary', summary: 'Epic Capture!', detail: "Pokémon Caught!", life: 3000 });
     });
   } catch (error) {
@@ -38,6 +38,7 @@ const copyToClipboard = (pokemon) => {
     toast.add({ severity: 'error', summary: 'Error', detail: 'Failed capture.', life: 3000 });
   }
 };
+
 
 </script>
 
