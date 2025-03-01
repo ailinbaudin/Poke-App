@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "scripts": {
     "dev": "vite --open",
-    "build": "vite build --base=/Poke-App/",
+    "build": "vite build",
     "serve": "vite preview"
   },
   "type": "module",

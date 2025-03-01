@@ -1,17 +1,24 @@
+import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { fileURLToPath, URL } from 'node:url';  
+
+process.stderr.write = (chunk) => {
+    if (chunk.includes('Deprecation Warning')) {
+        return;
+    }
+};
+
 export default defineConfig({
+    base: '/',
     plugins: [vue()],
-    base: process.env.NODE_ENV === 'production' ? '/Poke-App/' : '/',  
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url)),  
+            '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
     build: {
-        outDir: 'dist',  
-        sourcemap: false,  
+        outDir: 'dist',
+        sourcemap: false,
     },
     test: {
         globals: true,
