@@ -9,24 +9,19 @@ process.stderr.write = (chunk) => {
 };
 
 export default defineConfig({
-    base: '/',
+    base: '/Poke-App/',
     plugins: [vue()],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
-    build: {
-        outDir: 'dist',
-        sourcemap: false,
-    },
+    // build: {
+    //     outDir: 'dist',
+    //     sourcemap: false,
+    // },
     test: {
         globals: true,
         environment: 'jsdom',
     },
 });
-
-
-
-
-
