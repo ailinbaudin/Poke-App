@@ -7,41 +7,45 @@ export const usePokeStore = defineStore('pokeStore', () => {
   const favorites = ref(new Set());
   const loading = ref(true);
 
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
   const fetchPokemons = async () => {
     try {
-      const limit = 50;
-      const totalPokemons = 1118;
-      const pages = Math.ceil(totalPokemons / limit);
-      const allPokemons = [];
-  
-      const promises = [];
+      const totalPokemons = 1118;  
+      const limit = 100;  
+      const pages = Math.ceil(totalPokemons / limit);  
+
       for (let page = 0; page < pages; page++) {
-        promises.push(fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`)
-          .then(res => res.json())
-          .then(data => allPokemons.push(...data.results)));
+        
+        await delay(1000);  
+
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`);
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+        }
+        const data = await response.json();
+        
+        const pokemonDetails = await Promise.all(data.results.map(async (pokemon) => {
+          const details = await fetch(pokemon.url).then(res => res.json());
+          return {
+            ...pokemon,
+            image: details.sprites.front_default,
+            weight: details.weight,
+            height: details.height,
+            types: details.types.map(type => type.type.name).join(', ')
+          };
+        }));
+
+        pokemons.value = [...pokemons.value, ...pokemonDetails]; 
+
       }
-  
-      await Promise.all(promises);
-  
-      const pokemonDetails = await Promise.all(allPokemons.map(async (pokemon) => {
-        const details = await fetch(pokemon.url).then(res => res.json());
-        return {
-          ...pokemon,
-          image: details.sprites.front_default,
-          weight: details.weight,
-          height: details.height,
-          types: details.types.map(type => type.type.name).join(', ')
-        };
-      }));
-  
-      pokemons.value = pokemonDetails;
     } catch (error) {
       console.error('Error al obtener la lista de Pokémon:', error);
     } finally {
-      loading.value = false;
+      loading.value = false;  
     }
   };
-  
+
   const toggleFavorite = (pokemonName) => {
     if (favorites.value.has(pokemonName)) {
       favorites.value.delete(pokemonName);
