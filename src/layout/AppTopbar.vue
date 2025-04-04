@@ -3,32 +3,30 @@ import AppBreadcrumb from './AppBreadcrumb.vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
 
-const { onMenuToggle, onProfileSidebarToggle, onConfigSidebarToggle } = useLayout();
+const { onMenuToggle } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
 
-onMounted(() => {
-    bindOutsideClickListener();
-});
+onMounted(() => bindOutsideClickListener());
 
-onBeforeUnmount(() => {
-    unbindOutsideClickListener();
-});
+onBeforeUnmount(() => unbindOutsideClickListener());
 
 const bindOutsideClickListener = () => {
-    if (!outsideClickListener.value) {
-        outsideClickListener.value = (event) => {
+    let { value } = outsideClickListener;
+    if (!value) {
+        value = (event) => {
             if (isOutsideClicked(event)) {
                 topbarMenuActive.value = false;
             }
         };
-        document.addEventListener('click', outsideClickListener.value);
+        document.addEventListener('click', value);
     }
 };
 const unbindOutsideClickListener = () => {
-    if (outsideClickListener.value) {
-        document.removeEventListener('click', outsideClickListener);
+    const { value } = outsideClickListener;
+    if (value) {
+        document.removeEventListener('click', value);
         outsideClickListener.value = null;
     }
 };
@@ -40,30 +38,22 @@ const isOutsideClicked = (event) => {
 
     return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
 };
-
-const showProfileSidebar = () => {
-    onProfileSidebarToggle();
-};
-const onConfigButtonClick = () => {
-    onConfigSidebarToggle();
-};
 </script>
 
 <template>
     <div class="layout-topbar">
         <div class="topbar-start">
             <Button type="button" class="topbar-menubutton p-link p-trigger" @click="onMenuToggle">
-                <i class="pi pi-bars"></i>
+                <i class="pi pi-bars" />
             </Button>
 
-            <AppBreadcrumb class="topbar-breadcrumb"></AppBreadcrumb>
+            <AppBreadcrumb class="topbar-breadcrumb" />
         </div>
 
         <div class="topbar-end">
-            <ul class="topbar-menu">
-            </ul>
+            <ul class="topbar-menu" />
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped />

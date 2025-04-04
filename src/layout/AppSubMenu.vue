@@ -14,7 +14,7 @@ defineProps({
         <template v-for="(item, i) in model" :key="item">
             <AppMenuItem :item="item" root :index="i" />
 
-            <li class="menu-separator"></li>
+            <li class="menu-separator" />
         </template>
     </ul>
 </template>

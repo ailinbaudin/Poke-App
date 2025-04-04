@@ -9,7 +9,6 @@ const router = createRouter({
             component: AppLayout,
             redirect: '/welcome-pikachu',
             children: [
-                 
                 {
                     path: '/welcome-pikachu',
                     name: 'WelcomePikachu',
@@ -25,7 +24,6 @@ const router = createRouter({
                     name: 'listPokemons',
                     component: () => import('@/views/pages/listPokemons.vue')
                 },
-                
                 {
                     path: '/Documentation',
                     name: 'documentation',

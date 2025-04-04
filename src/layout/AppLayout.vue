@@ -6,6 +6,7 @@ import AppSidebar from './AppSidebar.vue';
 import AppConfig from './AppConfig.vue';
 import AppBreadCrumb from './AppBreadcrumb.vue';
 import { useLayout } from '@/layout/composables/layout';
+import Toast from 'primevue/toast';
 
 const $primevue = usePrimeVue();
 const { layoutConfig, layoutState, isSidebarActive } = useLayout();
@@ -21,38 +22,35 @@ watch(isSidebarActive, (newVal) => {
     }
 });
 
-onBeforeUnmount(() => {
-    unbindOutsideClickListener();
-});
+onBeforeUnmount(() => unbindOutsideClickListener());
 
-const containerClass = computed(() => {
-    return {
-        'layout-light': layoutConfig.colorScheme.value === 'light',
-        'layout-dim': layoutConfig.colorScheme.value === 'dim',
-        'layout-dark': layoutConfig.colorScheme.value === 'dark',
-        'layout-colorscheme-menu': layoutConfig.menuTheme.value === 'colorScheme',
-        'layout-primarycolor-menu': layoutConfig.menuTheme.value === 'primaryColor',
-        'layout-transparent-menu': layoutConfig.menuTheme.value === 'transparent',
-        'layout-overlay': layoutConfig.menuMode.value === 'overlay',
-        'layout-static': layoutConfig.menuMode.value === 'static',
-        'layout-slim': layoutConfig.menuMode.value === 'slim',
-        'layout-slim-plus': layoutConfig.menuMode.value === 'slim-plus',
-        'layout-horizontal': layoutConfig.menuMode.value === 'horizontal',
-        'layout-reveal': layoutConfig.menuMode.value === 'reveal',
-        'layout-drawer': layoutConfig.menuMode.value === 'drawer',
-        'layout-static-inactive': layoutState.staticMenuDesktopInactive.value && layoutConfig.menuMode.value === 'static',
-        'layout-overlay-active': layoutState.overlayMenuActive.value,
-        'layout-mobile-active': layoutState.staticMenuMobileActive.value,
-        'p-input-filled': $primevue.config.inputStyle === 'filled',
-        'p-ripple-disabled': $primevue.config.ripple === false,
-        'layout-sidebar-active': layoutState.sidebarActive.value,
-        'layout-sidebar-anchored': layoutState.anchored.value
-    };
-});
+const containerClass = computed(() => ({
+    'layout-light': layoutConfig.colorScheme.value === 'light',
+    'layout-dim': layoutConfig.colorScheme.value === 'dim',
+    'layout-dark': layoutConfig.colorScheme.value === 'dark',
+    'layout-colorscheme-menu': layoutConfig.menuTheme.value === 'colorScheme',
+    'layout-primarycolor-menu': layoutConfig.menuTheme.value === 'primaryColor',
+    'layout-transparent-menu': layoutConfig.menuTheme.value === 'transparent',
+    'layout-overlay': layoutConfig.menuMode.value === 'overlay',
+    'layout-static': layoutConfig.menuMode.value === 'static',
+    'layout-slim': layoutConfig.menuMode.value === 'slim',
+    'layout-slim-plus': layoutConfig.menuMode.value === 'slim-plus',
+    'layout-horizontal': layoutConfig.menuMode.value === 'horizontal',
+    'layout-reveal': layoutConfig.menuMode.value === 'reveal',
+    'layout-drawer': layoutConfig.menuMode.value === 'drawer',
+    'layout-static-inactive': layoutState.staticMenuDesktopInactive.value && layoutConfig.menuMode.value === 'static',
+    'layout-overlay-active': layoutState.overlayMenuActive.value,
+    'layout-mobile-active': layoutState.staticMenuMobileActive.value,
+    'p-input-filled': $primevue.config.inputStyle === 'filled',
+    'p-ripple-disabled': $primevue.config.ripple === false,
+    'layout-sidebar-active': layoutState.sidebarActive.value,
+    'layout-sidebar-anchored': layoutState.anchored.value
+}));
 
 const bindOutsideClickListener = () => {
-    if (!outsideClickListener.value) {
-        outsideClickListener.value = (event) => {
+    let { value } = outsideClickListener;
+    if (!value) {
+        value = (event) => {
             if (isOutsideClicked(event)) {
                 layoutState.overlayMenuActive.value = false;
                 layoutState.overlaySubmenuActive.value = false;
@@ -60,7 +58,7 @@ const bindOutsideClickListener = () => {
                 layoutState.menuHoverActive.value = false;
             }
         };
-        document.addEventListener('click', outsideClickListener.value);
+        document.addEventListener('click', value);
     }
 };
 const unbindOutsideClickListener = () => {
@@ -76,19 +74,20 @@ const isOutsideClicked = (event) => {
     return !(sidebarEl.isSameNode(event.target) || sidebarEl.contains(event.target) || topbarEl.isSameNode(event.target) || topbarEl.contains(event.target));
 };
 </script>
+
 <template>
     <div :class="['layout-container', { ...containerClass }]">
         <AppSidebar ref="sidebarRef" />
 
         <div class="layout-content-wrapper">
             <AppTopbar ref="topbarRef" />
-            <AppBreadCrumb class="content-breadcrumb"></AppBreadCrumb>
+            <AppBreadCrumb class="content-breadcrumb" />
             <div class="layout-content">
-                <router-view></router-view>
+                <router-view />
             </div>
         </div>
         <AppConfig />
-        <Toast></Toast>
-        <div class="layout-mask"></div>
+        <Toast />
+        <div class="layout-mask" />
     </div>
 </template>

@@ -1,34 +1,40 @@
-
-$gutter: 1rem; 
+$gutter: 1rem;
 @import '@/assets/layout/layout.scss';
 @import 'primeflex/primeflex.scss';
 @import 'primeicons/primeicons.css';
 
 :root {
-    --primary-color: #F22539 !important; 
-    --primary-color-text: #ffffff !important; 
-    --primary-color-border: 1px solid #F22539 !important; 
+    --primary-color: #f22539 !important;
+    --primary-color-text: #ffffff !important;
+    --primary-color-border: 1px solid #f22539 !important;
 }
 .p-button {
     background: var(--primary-color) !important;
     color: var(--primary-color-text) !important;
     border: var(--primary-color-border) !important;
 }
+.p-button:hover {
+    opacity: 0.8;
+}
+.layout-topbar {
+    width: 100%;
+    flex-grow: 0;
+}
 .layout-topbar .topbar-start .topbar-menubutton i {
     color: white !important;
 }
 /* Botones con estilos cuando entra el disabled ListPokemons*/
 .allButtons {
-    background-color: #F22539; 
-    border: 1px solid #F22539;     
+    background-color: #f22539;
+    border: 1px solid #f22539;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .p-button-disabled {
-    background-color: #BFBFBF !important;
-    border-color: #BFBFBF !important;
+    background-color: #bfbfbf !important;
+    border-color: #bfbfbf !important;
     color: #ffffff !important;
     cursor: not-allowed;
 }
@@ -36,49 +42,48 @@ $gutter: 1rem;
     padding: 1rem;
     max-width: 600px;
     margin: auto;
-
-  }
-  .p-inputtext:focus {
-    border-color: #BFBFBF !important; 
-    box-shadow: 0 0 2px 1px #BFBFBF !important; 
-  }
-
-.text-box{
-    color: #5E5E5E !important;
 }
-.text-title{
+.p-inputtext:focus {
+    border-color: #bfbfbf !important;
+    box-shadow: 0 0 2px 1px #bfbfbf !important;
+}
+
+.text-box {
+    color: #5e5e5e !important;
+}
+.text-title {
     color: #353535 !important;
 }
 .pi-star,
 .pi-star-fill {
-  color: #ECA539; 
+    color: #eca539;
 }
 /* Estilo para la estrella cuando el botón de favoritos está deshabilitado */
-.p-button-disabled .pi-star, 
+.p-button-disabled .pi-star,
 .p-button-disabled .pi-star-fill {
-    color: #E8E8E8 !important; 
+    color: #e8e8e8 !important;
 }
 
 /* Estilos personalizados para el paginador */
 .p-paginator .p-paginator-pages .p-paginator-page {
-    background-color: #F22539; 
-    border: 1px solid #F22539; 
-    color: white; 
+    background-color: #f22539;
+    border: 1px solid #f22539;
+    color: white;
 }
 
 .p-paginator .p-paginator-pages .p-paginator-page:hover {
-    background-color: #D21E32; 
-    border-color: #D21E32;
+    background-color: #d21e32;
+    border-color: #d21e32;
 }
 
-.p-paginator .p-paginator-next, 
+.p-paginator .p-paginator-next,
 .p-paginator .p-paginator-prev {
-    background-color: #F22539;
+    background-color: #f22539;
     color: white;
     border: none;
 }
 
-.p-paginator .p-paginator-next:hover, 
+.p-paginator .p-paginator-next:hover,
 .p-paginator .p-paginator-prev:hover {
-    background-color: #D21E32; 
+    background-color: #d21e32;
 }
