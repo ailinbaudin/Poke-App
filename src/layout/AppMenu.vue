@@ -4,7 +4,6 @@ import { ref } from 'vue';
 import AppSubMenu from './AppSubMenu.vue';
 
 const model = ref([
-
     {
         label: 'PokeWeb',
         icon: 'pi pi-fw pi-home',
@@ -18,17 +17,14 @@ const model = ref([
                 label: 'List pokemons',
                 icon: 'pi pi-fw pi-list',
                 to: '/list-pokemons'
-            },
-
+            }
         ]
     },
-
 
     {
         label: 'Start',
         icon: 'pi pi-fw pi-download',
         items: [
-
             {
                 label: 'Documentation',
                 icon: 'pi pi-fw pi-info-circle',
@@ -43,4 +39,4 @@ const model = ref([
     <AppSubMenu :model="model" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped />

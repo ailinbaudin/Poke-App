@@ -22,13 +22,9 @@ const layoutState = reactive({
 });
 
 export function useLayout() {
-    const setScale = (scale) => {
-        layoutConfig.scale = scale;
-    };
+    const setScale = (scale) => (layoutConfig.scale = scale);
 
-    const setActiveMenuItem = (item) => {
-        layoutState.activeMenuItem = item.value || item;
-    };
+    const setActiveMenuItem = (item) => (layoutState.activeMenuItem = item.value || item);
 
     const onMenuToggle = () => {
         if (layoutConfig.menuMode === 'overlay') {
@@ -42,13 +38,9 @@ export function useLayout() {
         }
     };
 
-    const onProfileSidebarToggle = () => {
-        layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible;
-    };
+    const onProfileSidebarToggle = () => (layoutState.profileSidebarVisible = !layoutState.profileSidebarVisible);
 
-    const onConfigSidebarToggle = () => {
-        layoutState.configSidebarVisible = !layoutState.configSidebarVisible;
-    };
+    const onConfigSidebarToggle = () => (layoutState.configSidebarVisible = !layoutState.configSidebarVisible);
 
     const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive || layoutState.overlaySubmenuActive);
 
@@ -57,6 +49,7 @@ export function useLayout() {
     const isDesktop = computed(() => window.innerWidth > 991);
 
     const isSlim = computed(() => layoutConfig.menuMode === 'slim');
+
     const isSlimPlus = computed(() => layoutConfig.menuMode === 'slim-plus');
 
     const isHorizontal = computed(() => layoutConfig.menuMode === 'horizontal');

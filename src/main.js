@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import { createPinia } from 'pinia'; 
+import { createPinia } from 'pinia';
 import Button from 'primevue/button';
 import '@/assets/styles.scss';
 import PrimeVue from 'primevue/config';
@@ -14,10 +14,9 @@ import Aura from '@primeuix/themes/aura';
 import Column from 'primevue/column';
 import DialogService from 'primevue/dialogservice';
 import ConfirmationService from 'primevue/confirmationservice';
-import ToastService from 'primevue/toastservice'; 
+import ToastService from 'primevue/toastservice';
 import InputText from 'primevue/inputtext';
-
-
+import Toast from 'primevue/toast';
 
 const pinia = createPinia();
 
@@ -41,8 +40,9 @@ app.component('DataView', DataView);
 app.component('DataTable', DataTable);
 app.component('DeferredContent', DeferredContent);
 app.component('Dialog', Dialog);
-app.component('Button', Button)
-app.component('Column', Column)
+app.component('Button', Button);
+app.component('Column', Column);
 app.component('InputText', InputText);
+app.component('Toast', Toast);
 
 app.mount('#app');

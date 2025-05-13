@@ -33,64 +33,62 @@ const menuItemRef = ref(null);
 
 onBeforeMount(() => {
     itemKey.value = props.parentItemKey ? `${props.parentItemKey}-${props.index}` : String(props.index);
-    
+
     const activeItem = layoutState.activeMenuItem.value;
     isActiveMenu.value = activeItem === itemKey.value || (activeItem && activeItem.startsWith(`${itemKey.value}-`));
-    
+
     handleRouteChange(route.path);
 });
 
-watch(() => isActiveMenu.value, () => {
-    const rootIndex = props.root ? props.index : parseInt(`${props.parentItemKey}`[0], 10);
-    const overlay = document.querySelectorAll('.layout-root-submenulist')[rootIndex];
-    const target = document.querySelectorAll('.layout-root-menuitem')[rootIndex];
+watch(
+    () => isActiveMenu.value,
+    () => {
+        const rootIndex = props.root ? props.index : parseInt(`${props.parentItemKey}`[0], 10);
+        const overlay = document.querySelectorAll('.layout-root-submenulist')[rootIndex];
+        const target = document.querySelectorAll('.layout-root-menuitem')[rootIndex];
 
-    if ((isSlim.value || isSlimPlus.value || isHorizontal.value) && isDesktop) {
-        nextTick(() => {
-            calculatePosition(overlay, target);
-        });
+        if ((isSlim.value || isSlimPlus.value || isHorizontal.value) && isDesktop) nextTick(() => calculatePosition(overlay, target));
     }
-});
+);
 
-watch(() => layoutState.activeMenuItem.value, (newVal) => {
-    isActiveMenu.value = newVal === itemKey.value || newVal.startsWith(`${itemKey.value}-`);
-});
+watch(
+    () => layoutState.activeMenuItem.value,
+    (newVal) => (isActiveMenu.value = newVal === itemKey.value || newVal.startsWith(`${itemKey.value}-`))
+);
 
-watch(() => layoutConfig.menuMode.value, () => {
-    isActiveMenu.value = false;
-});
+watch(
+    () => layoutConfig.menuMode.value,
+    () => (isActiveMenu.value = false)
+);
 
-watch(() => layoutState.overlaySubmenuActive.value, (newValue) => {
-    if (!newValue) {
-        isActiveMenu.value = false;
+watch(
+    () => layoutState.overlaySubmenuActive.value,
+    (newValue) => {
+        if (!newValue) isActiveMenu.value = false;
     }
-});
+);
 
 watch(() => route.path, handleRouteChange);
 
-watch(() => route.path, (newPath) => {
-    if (!(isSlim.value || isSlimPlus.value || isHorizontal.value) && props.item.to && props.item.to === newPath) {
-        setActiveMenuItem(itemKey);
-    } else if (isSlim.value || isSlimPlus.value || isHorizontal.value) {
-        isActiveMenu.value = false;
+watch(
+    () => route.path,
+    (newPath) => {
+        if (!(isSlim.value || isSlimPlus.value || isHorizontal.value) && props.item.to && props.item.to === newPath) {
+            setActiveMenuItem(itemKey);
+        } else if (isSlim.value || isSlimPlus.value || isHorizontal.value) {
+            isActiveMenu.value = false;
+        }
     }
-});
+);
 
 const itemClick = async (event, item) => {
-    if (item.disabled) {
-        event.preventDefault();
-        return;
-    }
+    if (item.disabled) return event.preventDefault();
 
     const { overlayMenuActive, staticMenuMobileActive } = layoutState;
 
-    if ((item.to || item.url) && (staticMenuMobileActive.value || overlayMenuActive.value)) {
-        onMenuToggle();
-    }
+    if ((item.to || item.url) && (staticMenuMobileActive.value || overlayMenuActive.value)) onMenuToggle();
 
-    if (item.command) {
-        item.command({ originalEvent: event, item });
-    }
+    if (item.command) item.command({ originalEvent: event, item });
 
     if (item.items) {
         if (props.root && isActiveMenu.value && (isSlim.value || isSlimPlus.value || isHorizontal.value)) {
@@ -109,9 +107,7 @@ const itemClick = async (event, item) => {
             removeAllTooltips();
         }
     } else {
-        if (!isDesktop) {
-            layoutState.staticMenuMobileActive.value = !layoutState.staticMenuMobileActive.value;
-        }
+        if (!isDesktop) layoutState.staticMenuMobileActive.value = !layoutState.staticMenuMobileActive.value;
 
         if (isSlim.value || isSlimPlus.value || isHorizontal.value) {
             layoutState.overlaySubmenuActive.value = false;
@@ -133,17 +129,13 @@ function handleRouteChange(newPath) {
 
 const onMouseEnter = () => {
     if (props.root && (isSlim.value || isSlimPlus.value || isHorizontal.value) && isDesktop) {
-        if (!isActiveMenu.value && layoutState.menuHoverActive.value) {
-            setActiveMenuItem(itemKey);
-        }
+        if (!isActiveMenu.value && layoutState.menuHoverActive.value) setActiveMenuItem(itemKey);
     }
 };
 
 const removeAllTooltips = () => {
     const tooltips = document.querySelectorAll('.p-tooltip');
-    tooltips.forEach((tooltip) => {
-        tooltip.remove();
-    });
+    tooltips.forEach((tooltip) => tooltip.remove());
 };
 
 const calculatePosition = (overlay, target) => {
@@ -165,9 +157,7 @@ const calculatePosition = (overlay, target) => {
     }
 };
 
-const checkActiveRoute = (item) => {
-    return route.path === item.to;
-};
+const checkActiveRoute = (item) => route.path === item.to;
 </script>
 
 <template>

@@ -33,14 +33,9 @@ const componentThemes = ref([
 const scales = ref([12, 13, 14, 15, 16]);
 
 watch(layoutConfig.menuMode, (newVal) => {
-    if (newVal === 'static') {
-        layoutState.staticMenuDesktopInactive.value = false;
-    }
+    if (newVal === 'static') layoutState.staticMenuDesktopInactive.value = false;
 });
 
-const onConfigButtonClick = () => {
-    onConfigSidebarToggle();
-};
 const changeColorScheme = (colorScheme) => {
     const themeLink = document.getElementById('theme-link');
     const themeLinkHref = themeLink.getAttribute('href');
@@ -48,23 +43,17 @@ const changeColorScheme = (colorScheme) => {
     const newColorScheme = 'theme-' + colorScheme;
     const newHref = themeLinkHref.replace(currentColorScheme, newColorScheme);
 
-    replaceLink(themeLink, newHref, () => {
-        layoutConfig.colorScheme.value = colorScheme;
-    });
+    replaceLink(themeLink, newHref, () => (layoutConfig.colorScheme.value = colorScheme));
 };
 const changeTheme = (theme) => {
     const themeLink = document.getElementById('theme-link');
     const themeHref = themeLink.getAttribute('href');
     const newHref = themeHref.replace(layoutConfig.theme.value, theme);
 
-    replaceLink(themeLink, newHref, () => {
-        layoutConfig.theme.value = theme;
-    });
+    replaceLink(themeLink, newHref, () => (layoutConfig.theme.value = theme));
 };
 const replaceLink = (linkElement, href, onComplete) => {
-    if (!linkElement || !href) {
-        return;
-    }
+    if (!linkElement || !href) return;
 
     const id = linkElement.getAttribute('id');
     const cloneLinkElement = linkElement.cloneNode(true);
@@ -92,20 +81,12 @@ const incrementScale = () => {
     setScale(layoutConfig.scale.value + 1);
     applyScale();
 };
-const applyScale = () => {
-    document.documentElement.style.fontSize = layoutConfig.scale.value + 'px';
-};
-const onInputStyleChange = (value) => {
-    $primevue.config.inputStyle = value;
-};
-const onRippleChange = (value) => {
-    $primevue.config.ripple = value;
-};
+const applyScale = () => (document.documentElement.style.fontSize = layoutConfig.scale.value + 'px');
+const onInputStyleChange = (value) => ($primevue.config.inputStyle = value);
+const onRippleChange = (value) => ($primevue.config.ripple = value);
 </script>
 
 <template>
-   
-
     <Sidebar v-model:visible="layoutState.configSidebarVisible.value" position="right" class="layout-config-sidebar w-20rem">
         <h5>Themes</h5>
         <div class="flex flex-wrap row-gap-3">
@@ -163,7 +144,9 @@ const onRippleChange = (value) => {
                     <label for="mode2">Horizontal</label>
                 </div>
             </div>
+
             <h5>Menu Theme</h5>
+
             <div class="field-radiobutton">
                 <RadioButton :checked="layoutConfig.menuTheme === 'colorScheme'" name="menuTheme" value="colorScheme" v-model="layoutConfig.menuTheme.value" inputId="mode1"></RadioButton>
                 <label for="mode1">Color Scheme</label>
@@ -173,6 +156,7 @@ const onRippleChange = (value) => {
                 <RadioButton :checked="layoutConfig.menuTheme === 'primaryColor'" name="menuTheme" value="primaryColor" v-model="layoutConfig.menuTheme.value" inputId="mode2"></RadioButton>
                 <label for="mode2">Primary Color</label>
             </div>
+
             <div class="field-radiobutton">
                 <RadioButton :checked="layoutConfig.menuTheme === 'transparent'" name="menuTheme" value="transparent" v-model="layoutConfig.menuTheme.value" inputId="mode3"></RadioButton>
                 <label for="mode2">Transparent</label>
@@ -180,14 +164,17 @@ const onRippleChange = (value) => {
         </template>
 
         <h5>Color Scheme</h5>
+
         <div class="field-radiobutton flex-1">
             <RadioButton v-model="colorScheme" name="colorScheme" value="light" @change="() => changeColorScheme('light')" inputId="outlined_input"></RadioButton>
             <label for="outlined_input">Light</label>
         </div>
+
         <div class="field-radiobutton flex-1">
             <RadioButton v-model="colorScheme" name="colorScheme" value="dim" @change="() => changeColorScheme('dim')" inputId="filled_input"></RadioButton>
             <label for="filled_input">Dim</label>
         </div>
+
         <div class="field-radiobutton flex-1">
             <RadioButton v-model="colorScheme" name="colorScheme" value="dark" @change="() => changeColorScheme('dark')" inputId="filled_input"></RadioButton>
             <label for="filled_input">Dark</label>
@@ -195,11 +182,13 @@ const onRippleChange = (value) => {
 
         <template v-if="!simple">
             <h5>Input Style</h5>
+
             <div class="flex">
                 <div class="field-radiobutton flex-1">
                     <RadioButton :modelValue="inputStyle" name="inputStyle" value="outlined" inputId="outlined_input" @update:modelValue="onInputStyleChange"></RadioButton>
                     <label for="outlined_input">Outlined</label>
                 </div>
+
                 <div class="field-radiobutton flex-1">
                     <RadioButton :modelValue="inputStyle" name="inputStyle" value="filled" inputId="filled_input" @update:modelValue="onInputStyleChange"></RadioButton>
                     <label for="filled_input">Filled</label>
@@ -212,4 +201,4 @@ const onRippleChange = (value) => {
     </Sidebar>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped />

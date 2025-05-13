@@ -37,15 +37,11 @@ const showOnlyFavorites = () => {
 };
 
 const showDialog = (pokemon) => {
-    console.log('Selected Pokemon:', pokemon);
     selectedPokemon.value = { ...pokemon };
     visibleDialog.value = true;
 };
 
-
-onMounted(() => {
-    pokeStore.fetchPokemons();
-});
+onMounted(() => pokeStore.fetchPokemons());
 </script>
 
 <template>
@@ -53,55 +49,70 @@ onMounted(() => {
         <div class="flex justify-content-center">
             <span class="p-input-icon-left topbar">
                 <InputText v-model="filters.global.value" placeholder="Search" class="full-width-input" v-tooltip.top="'Find your pokemon'" type="text" />
-
             </span>
         </div>
-        <DataTable :value="filteredPokemons" :paginator="paginated" :rows="10" dataKey="name" v-model:filters="filters"
-            filterDisplay="menu" :globalFilterFields="['name']" :loading="pokeStore.loading" :scrollable="!paginated"
-            style="max-height: 500px; overflow-y: auto">
-
-            <Column field="image" style="max-width: 30px;">
+        <DataTable
+            :value="filteredPokemons"
+            :paginator="paginated"
+            :rows="10"
+            dataKey="name"
+            v-model:filters="filters"
+            filterDisplay="menu"
+            :globalFilterFields="['name']"
+            :loading="pokeStore.loading"
+            :scrollable="!paginated"
+            style="max-height: 500px; overflow-y: auto"
+        >
+            <Column field="image" style="max-width: 30px">
                 <template #body="{ data }">
                     <div class="image-container">
-                        <img :src="data.image" alt="data.name" @click="showDialog(data)"
-                            v-tooltip.bottom="{ value: 'Learn more about this Pokémon' }" />
+                        <img :src="data.image" alt="data.name" @click="showDialog(data)" v-tooltip.bottom="{ value: 'Learn more about this Pokémon' }" />
                     </div>
                 </template>
             </Column>
             <Column field="name">
                 <template #body="{ data }">
-                    <span @click="showDialog(data)" style="cursor: pointer;">{{ data.name }}</span>
+                    <span @click="showDialog(data)" style="cursor: pointer">{{ data.name }}</span>
                 </template>
             </Column>
-            <Column field="favorite" alignFrozen="right" style="width: 80px; text-align: center;">
+            <Column field="favorite" alignFrozen="right" style="width: 80px; text-align: center">
                 <template #body="{ data }">
-                    <i class="pi"
+                    <i
+                        class="pi"
                         :class="pokeStore.favorites.has(data.name) ? 'pi-star-fill text-yellow-500' : 'pi-star text-gray-400'"
                         @click="toggleFavorite(data)"
-                        style="cursor: pointer; font-size: 1.5rem; border-radius: 50%; padding: 6px; background-color: rgba(0, 0, 0, 0.05); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" />
+                        style="cursor: pointer; font-size: 1.5rem; border-radius: 50%; padding: 6px; background-color: rgba(0, 0, 0, 0.05); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1)"
+                    />
                 </template>
             </Column>
         </DataTable>
         <div class="buttons">
-            <Button :class="{
-                'allButtons': !showFavorites,
-                'p-button-danger p-button-outlined': showFavorites,
-                'p-button-disabled': showFavorites
-            }" rounded @click="showAll">
+            <Button
+                :class="{
+                    allButtons: !showFavorites,
+                    'p-button-danger p-button-outlined': showFavorites,
+                    'p-button-disabled': showFavorites
+                }"
+                rounded
+                @click="showAll"
+            >
                 <i class="pi pi-bars text-white-500 mr-2" />
                 All
             </Button>
-            <Button :class="{
-                'allButtons': showFavorites,
-                'p-button-danger p-button-outlined': !showFavorites,
-                'p-button-disabled': !showFavorites
-            }" rounded @click="showOnlyFavorites">
+            <Button
+                :class="{
+                    allButtons: showFavorites,
+                    'p-button-danger p-button-outlined': !showFavorites,
+                    'p-button-disabled': !showFavorites
+                }"
+                rounded
+                @click="showOnlyFavorites"
+            >
                 <i class="pi pi-star-fill text-white-500 mr-2" />
                 Favorites
             </Button>
         </div>
         <CardPokemons :visible="visibleDialog" :pokemon="selectedPokemon" @update:visible="visibleDialog = $event" />
-
     </div>
     <LoadingPokebola v-if="pokeStore.loading" />
 </template>

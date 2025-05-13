@@ -6,11 +6,7 @@ const route = useRoute();
 const breadcrumbRoutes = ref([]);
 
 const setBreadcrumbRoutes = () => {
-    if (route.meta.breadcrumb) {
-        breadcrumbRoutes.value = route.meta.breadcrumb;
-
-        return;
-    }
+    if (route.meta.breadcrumb) return (breadcrumbRoutes.value = route.meta.breadcrumb);
 
     breadcrumbRoutes.value = route.fullPath
         .split('/')
